@@ -42,6 +42,14 @@ type BankAccount struct {
 	balance float64
 }
 
+func newBankAccount (owner, accountNumber string, balance float64) *BankAccount {
+	return &BankAccount {
+		owner: owner,
+		accountNumber: accountNumber,
+		balance: balance,
+	}
+}
+
 func (ba *BankAccount) deposit(amount float64) {
 	ba.balance += amount
 	fmt.Println("Пополняем счет на", amount)
@@ -63,11 +71,7 @@ func (ba *BankAccount) showBalance() {
 }
 
 func main() {
-	bankAccount := BankAccount {
-		owner: "Nikita",
-		accountNumber: "1234567",
-		balance: 100,
-	}
+	bankAccount := newBankAccount(owner, accountNumber, balance)
 
 	bankAccount.deposit(500)
 	bankAccount.withdraw(200)
