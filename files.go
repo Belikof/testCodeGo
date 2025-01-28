@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	file, err := os.Create("example.txt")
+	file, err := os.OpenFile("example.txt", os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -22,12 +22,12 @@ func main() {
 
 	// fmt.Printf("Read %d byte: %s\n", count, buffer[:count])
 
-	data := "Hello world!"
-	count, err := file.WriteString(data)
+	data := "\nHello world!"
+	_, err = file.WriteString(data)
 	if err != nil {
 		fmt.Println("Error", err)
 		return
 	}
 
-	fmt.Printf("Записано %d байт\n", count)
+	fmt.Printf("Succesfully")
 }
